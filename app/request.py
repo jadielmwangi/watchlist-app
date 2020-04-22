@@ -13,7 +13,7 @@ Movie = movie.Movie
 api_key = app.config['4b5875e5fc8e9e3c5c43dc4be409b591']
 
 # Getting the movie base url
-base_url = app.config["https://api.themoviedb.org/3/movie/550?api_key=4b5875e5fc8e9e3c5c43dc4be409b591"]
+base_url = app.config["https://api.themoviedb.org/3/movie/550?"]
 
 
 def get_movies(category):
