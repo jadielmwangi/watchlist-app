@@ -13,8 +13,8 @@ Movie = movie.Movie
 api_key = app.config['4b5875e5fc8e9e3c5c43dc4be409b591']
 
 # Getting the movie base url
-base_url = app.config["https://api.themoviedb.org/3/movie/550?"]
-
+base_url = app.config['https://api.themoviedb.org/3/movie/550?api_key=4b5875e5fc8e9e3c5c43dc4be409b591']
+# 'https://api.themoviedb.org/3/movie/{}?api_key={}'
 
 def get_movies(category):
     '''
@@ -62,3 +62,24 @@ def process_results(movie_list):
             movie_results.append(movie_object)
 
     return movie_results
+
+
+def get_movie(id):
+    get_movie_details_url = base_url.format(id,api_key)
+
+    with urllib.request.urlopen(get_movie_details_url) as url:
+        movie_details_data = url.read()
+        movie_details_response = json.loads(movie_details_data)
+
+        movie_object = None
+        if movie_details_response:
+            id = movie_details_response.get('id')
+            title = movie_details_response.get('original_title')
+            overview = movie_details_response.get('overview')
+            poster = movie_details_response.get('poster_path')
+            vote_average = movie_details_response.get('vote_average')
+            vote_count = movie_details_response.get('vote_count')
+
+            movie_object = Movie(id,title,overview,poster,vote_average,vote_count)
+
+    return movie_object
