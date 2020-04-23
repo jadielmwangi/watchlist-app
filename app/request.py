@@ -10,11 +10,11 @@ from .models import movie
 Movie = movie.Movie
 
 # Getting api key
-api_key = app.config['4b5875e5fc8e9e3c5c43dc4be409b591']
+api_key = app.config['MOVIE_API_KEY']
 
 # Getting the movie base url
-base_url = app.config['https://api.themoviedb.org/3/movie/550?api_key=4b5875e5fc8e9e3c5c43dc4be409b591']
-# 'https://api.themoviedb.org/3/movie/{}?api_key={}'
+base_url = app.config["MOVIE_API_BASE_URL"]
+
 
 def get_movies(category):
     '''
